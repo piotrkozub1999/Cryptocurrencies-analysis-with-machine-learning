@@ -121,7 +121,6 @@ coins_list.append(take_coin("ethereum", 'ETH', 'Ethereum', 2))
 ...
 ```
 
-
 ```python
 data = []
 for coins in coins_list:
