@@ -1,3 +1,7 @@
+<h1><center>Cryptocurrencies Market Analysis</center></h1>
+<h2><center>Machine Learning</center></h2>
+<h3><center>PL</center></h3>
+
 ## 1. Cel i założenia projektowe
 
 Celem projektu jest przeprowadzenie badań dotyczących zachowania rynku kryptowalut. Projekt zawiera analizę zachowania kursów najpopularniejszych kryptowalut na rynku światowym. W tym celu przeprowadzono ogólne rozpoznanie rynku kryptowalut polegające na sprawdzeniu kapitalizacji rynkowej czy udziału stu najpopularniejszych kryptowalut na rynku. Wykonano również analizę Bitcoina jako głównej kryptowaluty, która posiada znaczny udział w rynku kryptowalut i oddziałuje na kursy innych aktywów cyfrowych. Sprawdzono zachowanie Bitcoina w odniesieniu do najważniejszych wydarzeń na świecie oraz innych ciekawych czynników. Zestawiono również dane różynch kryptowalut w celu zweryfikowania zwiazków między nimi. Projekt obejmuje także analizę w odniesieniu do aktywów rzeczywistych na giełdzie takich jak indeks S&P 500, indeks Dolara czy kurs złota i srebra. W analizie zostały również wykorzystane techniki eksploracji danych w celu pogrupowania kryptowalut pod względem ryzyka inwestowania.
