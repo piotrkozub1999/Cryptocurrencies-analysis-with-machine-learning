@@ -1,6 +1,6 @@
 <h1><center>Cryptocurrencies Market Analysis</center></h1>
 <h2><center>Machine Learning</center></h2>
-<h3><center>PL</center></h3>
+<h3><center>EN</center></h3>
 
 ## 1. Project objectives
 
@@ -2953,5 +2953,6 @@ plt.show()
 
 
 Clustering two-dimensional data is purely visual and should not be used to guide investment decisions. However, some information has been retained, allowing us to observe that the largest cryptocurrencies are located in two clusters (yellow and green in the chart). This time, the model was unable to identify cryptocurrencies that clearly stand out from the rest, which undermines its credibility.
+
 
 
