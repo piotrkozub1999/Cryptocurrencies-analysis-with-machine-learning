@@ -2205,22 +2205,22 @@ plt.show()
 
 
 ```python
-print("Wartości wskaźników dla modelu bez PCA:")
+print("Indicator values for the model without PCA:")
 print("Silhoutte score: {:.3f}".format(max(silhouttescore)))
-print("Indeks Calińskiego-Harabasza: {:.2f}".format(max(ch_index)))
+print("Calinski–Harabasz index: {:.2f}".format(max(ch_index)))
 print()
-print("Wartości wskaźników dla modelu z PCA:")
+print("Indicator values for the model with PCA:")
 print("Silhoutte score: {:.3f}".format(max(silhouttescore_pca)))
-print("Indeks Calińskiego-Harabasza: {:.2f}".format(max(ch_index_pca)))
+print("Calinski–Harabasz index: {:.2f}".format(max(ch_index_pca)))
 ```
 
-    Wartości wskaźników dla modelu bez PCA:
+    Indicator values for the model without PCA:
     Silhoutte score: 0.246
-    Indeks Calińskiego-Harabasza: 31.52
+    Calinski–Harabasz index: 31.52
     
-    Wartości wskaźników dla modelu z PCA:
+    Indicator values for the model with PCA:
     Silhoutte score: 0.263
-    Indeks Calińskiego-Harabasza: 36.76
+    Calinski–Harabasz index: 36.76
     
 
 The above metric values show that the model achieved better performance for data previously reduced by PCA. In both cases, the values are higher than those for the model without reduced dimensions. An important observation is the lack of consistency in the results of the model without PCA (graph from section 9.3.1). The Silhouette coefficient value indicates the optimal solution for 14 clusters, while the CH index value indicates 6 clusters. In the case of the model with dimensionality reduction using the PCA method (graph from subsection 9.3.2), the highest values of model goodness measures were calculated in both cases for 6 clusters, which means consistency of results. This information is another argument confirming the superiority of the model with dimensionality reduction over the model without it. Additionally, the inertia graph (section 9.3.2) shows the so-called ‘elbow’, i.e. the point where the inertia value decreases significantly more slowly. Only the model with 6 clusters implemented on data with reduced dimensionality was subjected to further analysis. 
@@ -2953,6 +2953,7 @@ plt.show()
 
 
 Clustering two-dimensional data is purely visual and should not be used to guide investment decisions. However, some information has been retained, allowing us to observe that the largest cryptocurrencies are located in two clusters (yellow and green in the chart). This time, the model was unable to identify cryptocurrencies that clearly stand out from the rest, which undermines its credibility.
+
 
 
 
