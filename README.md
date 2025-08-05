@@ -688,9 +688,9 @@ Grouping and summing data by date for the “*market*” and “*volume*” colu
 ```python
 sns.set(style="whitegrid")
 fig, ax = plt.subplots(figsize=(9,6))
-ax.set_title('Total market value')
-plt.xlabel('Date')
-plt.ylabel('Market value')
+ax.set_title('Całkowita wartość rynku')
+plt.xlabel('Data')
+plt.ylabel('Wartość rynku')
 sns.lineplot(data=crypto_market.market, color="#0000ac", label='Market capitalisation')
 plt.show()
 ```
@@ -716,11 +716,11 @@ Creation of eleven compartments, which will contain the ten most popular cryptoc
 
 
 ```python
-labels = crypto_snap[crypto_snap.ranknow <= 11].name.replace('Uniswap', 'Other cryptocurrencies')
+labels = crypto_snap[crypto_snap.ranknow <= 11].name.replace('Uniswap', 'Pozostałe kryptowaluty')
 sizes = crypto_market_comp
 explode = (0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0, 0, 0)
 fig, ax = plt.subplots(figsize=(8,8))
-ax.set_title('Participation of the largest cryptocurrencies in the entire market', fontsize=20)
+ax.set_title('Udział największych kryptowalut w całym rynku', fontsize=20)
 ax.pie(sizes, explode = explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90, textprops={"fontsize":14}, 
         labeldistance=1.2, pctdistance=0.9)
@@ -734,17 +734,17 @@ plt.show()
     
 
 
-Jak możemy zauważyć, zdecydowana większość wartości rynku należy do Bitcoina. O ponad połowę mniej warte jest Ethereum, zaś cała reszta zamyka się w 25% kapitalizacji.
+As we can see, Bitcoin accounts for the vast majority of the market value. Ethereum is worth less than half of that, while the rest accounts for 25% of the capitalisation.
 
 
 ```python
 crypto_4 = crypto[(crypto.ranknow <= 4)]
 ```
 
-## 6. Analiza najpopularniejszych kryptowalut
+## 6. Analysis of the most popular cryptocurrencies
 
-Analizując najbardziej popularne kryptowaluty od początku 2019 roku największą stabliność wykazuje Bitcoin oraz Ethereum, które w danym przedziale czasowym zawsze zajmowały odpowiednio miejsce 1 i 2. Przez większość czasu, bo aż do początku 2021 roku 3 miejsce cały czas stabilnie należało do Ripple ale wzrost popularności giełdy Binance spowodował, że należąca do nich kryptowaluta zyskała na wartości i od 2021 roku stale jest trzecią najpopularniejszą kryptowalutą. W tym czasie Ripple osylował w top6 pupularnych kryptowalut.  
-Można więc z tego wywnioskować, że na przestrzeni ostatnich 4 lat najbardziej stabilnymi kryptowalutami były Bitcoin, Ethereum, BinanceCoin oraz Ripple.
+When analysing the most popular cryptocurrencies since the beginning of 2019, Bitcoin and Ethereum have shown the greatest stability, always occupying first and second place respectively during the given time period. For most of the time, until the beginning of 2021, the third place belonged to Ripple, but the rise in popularity of the Binance exchange caused their cryptocurrency to gain in value and since 2021 it has been consistently the third most popular cryptocurrency. During this time, Ripple hovered in the top 6 popular cryptocurrencies.  
+It can therefore be concluded that over the last 4 years, the most stable cryptocurrencies were Bitcoin, Ethereum, BinanceCoin and Ripple.
 
 
 
@@ -768,8 +768,8 @@ plt.show()
     
 
 
-Powyższy wykres przedstawia wartość rynkową TOP4 kryptowalut na giełdzie binance. Skala logarytmiczna nie obrazuje jednak rzeczywistej przewagi Bitcoina nad resztą.
-Z drugiej strony niezastosowanie skali logarytmicznej sprawi że przebieg wartości pozostałych kryptowalut przybliży się do osi x.
+The chart above shows the market value of the TOP 4 cryptocurrencies on the Binance exchange. However, the logarithmic scale does not reflect Bitcoin's actual advantage over the rest.
+On the other hand, not using a logarithmic scale will cause the values of other cryptocurrencies to approach the x-axis.
 
 
 ```python
@@ -783,8 +783,8 @@ plt.show()
     
 
 
-Powyższy zbiór wykresów przedstawie zależności pomiędzy pięcioma wartościami (wartość rynku, wolumen zrealizowany, stopa zwrotu, wspołczynnik zamknięcia, tygodniowa amplituda i wartość na zamknięciu dla czterech największych kryptowalut.
-Obserwując poszczególne zależności możemy zauważyć, że kombinacje wykresów związane z wolumenem zrealizowanym oraz wartością są rozdzielne. W większości przypadków zbiory te mozna łatwo odseparować dla poszczególnych kryptowalut. Pozostałe zmienne z reguły nachodzą na siebie.
+The above set of charts shows the relationships between five values (market value, realised volume, rate of return, closing ratio, weekly amplitude and closing value) for the four largest cryptocurrencies.
+By observing the individual relationships, we can see that the combinations of charts related to realised volume and value are separate. In most cases, these sets can be easily separated for individual cryptocurrencies. The remaining variables generally overlap.
 
 
 ```python
@@ -802,10 +802,10 @@ plt.show()
     
 
 
-Powyższy wykres pudełkowy przedstawia rozkład stopy zwrotu dla poszczegolnych kryptowalut.
-Najbardziej nasuwający się wniosek wynika z rozmieszczenia wartości odstających. Możemy zaobserwować, że większość kryptowalut, w przeciwieństwie do Bitcoina, posiada pojedyńcze przypadki zdecydowanych spadków tydzień do tygodnia. Oznacza to, że ich zakup niesie ze sobą niskie, ale możliwe ryzyko gwałtownego spadku wartości.
+The box plot above shows the distribution of returns for individual cryptocurrencies.
+The most obvious conclusion can be drawn from the distribution of outliers. We can see that most cryptocurrencies, unlike Bitcoin, have isolated cases of sharp week-to-week declines. This means that purchasing them carries a low but possible risk of a sharp decline in value.
 
-## 7. Analiza Bitcoina
+## 7. Bitcoin Analysis
 
 
 ```python
@@ -813,7 +813,7 @@ bitcoin = crypto[crypto.slug == 'bitcoin']
 bitcoin['date'] = pd.to_datetime(bitcoin['date'])
 ```
 
-Stworzenie zmiennej odpowiedzialnej za wszystkie dane dotyczące tylko Bitcoina
+Creating a variable responsible for all data related only to Bitcoin
 
 
 ```python
@@ -828,19 +828,16 @@ mpf.plot(bitcoin.set_index('date').tail(len(bitcoin)),
     
 
 
-Powyższy wykres przedstawia kurs Bitcoina względem krypotwaluty Tether, która jest cyfrowym odpowiednikiem dolara i oscyluje wokół wartości jednego dolara za token.  
+The chart above shows the price of Bitcoin against the cryptocurrency Tether, which is the digital equivalent of the dollar and fluctuates around one dollar per token.  
 
-Od 2019 roku duże amerykańskie korporacje zaczęły akceptować nową metodę płatności za pomocą waluty cyfrowej w postaci Bitcoina. Spowodowało to wzrost notowań do 10000$ a następnie oscylację wokół wartości 8500$. Pod koniec roku 2019 wybuchła pandemia Covid w Azji co przełożyło się na kolejny wzrost notowań kryptowaluty. Powodem był początek kryzysu w krajach przeciwstawiających się kryptowalutom jako formie płatności (np. Chiny). W momencie gdy pandemia dotarła do Europy i USA kurs Bitcoina mocno spadł i a tokeny zostały w dużym stopniu wyprzedawane. Pod wpływem niestabilności gospodarki wartość kryptowaluty zaczęła znów wzrastać wyrównując wartość osiągniętą przed pandemią (około 1000$) i stabilizując osiągniętą wartość przez ponad pół roku.  
+Since 2019, large American corporations have begun to accept a new method of payment using the digital currency Bitcoin. This caused the price to rise to £10,000 and then fluctuate around £8,500. At the end of 2019, the Covid pandemic broke out in Asia, which translated into another increase in the cryptocurrency's price. The reason was the onset of a crisis in countries opposed to cryptocurrencies as a form of payment (e.g. China). When the pandemic reached Europe and the US, the price of Bitcoin fell sharply and tokens were largely sold off. Under the influence of economic instability, the value of the cryptocurrency began to rise again, reaching the value achieved before the pandemic (around £1,000) and stabilising at that value for over six months.  
 
-Pod koniec 2020 roku zaczął się największy w historii Bitcoina wzrost kursu, który sięgnął wartości ponad 61000$. Wartość zmieniła się o ponad 500% w 4 miesiące. Przyczyną dużego wzrostu kursów kryptowalut były skutki kryzysu powstałego przez pandemię. Zaczęto poszukiwać rozwiązania trudnej sytuacji gospodarczej oraz coraz większe firmy tj. Amazon, Bank of New York czy Morgan Stanley pozwalały na dokonywanie transakcji za pomocą Bitcoina. Osoby wpływowe np. Elon Musk zaczęły inwestować w tokeny BTC i rozpowszechniać informacje na ich temat, co również spowodowało wzrost kursu. W pewnym momencie po ustabilizowaniu najwyższej wartości kryptowaluty nastąpiła ogólna panika i nagłe masowe wyprzedanie kryptowaluty przez krótkoterminowych inwestorów. Rezultatem był nagły spadek kursu o ponad 40%. Nowa wartość BTC wynosiła około 33000$. Po masowej panice przyszedł jak zawsze okres wzrostu wartości, który został zatrzymany przez rząd Chin. We wrześniu 2021 roku Ludowy Bank Chin wprowadził zakaz transakcji kryptowalut co odbiło się na notowaniach giełdowych Bitcoina. Wzrost został zahamowany, lecz tylko na krótki okres po, którym wartość Bitcoina sięgnęła rekordowych ponad 64000$ za 1 BTC. Jest to największa wartość Bitcoina w swojej historii. 
+At the end of 2020, Bitcoin experienced its largest price increase in history, reaching a value of over $61,000. The value changed by over 500% in 4 months. The reason for the large increase in cryptocurrency prices was the effects of the crisis caused by the pandemic. People began to look for solutions to the difficult economic situation, and more and more companies, such as Amazon, Bank of New York and Morgan Stanley, allowed transactions to be made using Bitcoin. Influential people, such as Elon Musk, began to invest in BTC tokens and spread information about them, which also caused the price to rise. At one point, after the cryptocurrency's highest value stabilised, there was general panic and a sudden mass sell-off of the cryptocurrency by short-term investors. The result was a sudden drop in the price of over 40%. The new value of BTC was around $33,000. After the mass panic, as always, there was a period of growth in value, which was halted by the Chinese government. In September 2021, the People's Bank of China introduced a ban on cryptocurrency transactions, which affected Bitcoin's stock market prices. The growth was halted, but only for a short period, after which the value of Bitcoin reached a record high of over $64,000 per 1 BTC. This is the highest value of Bitcoin in its history.
 
-Pod koniec 2021 roku rozpoczął się spadek kursu Bitcoina spowodowany korektą notowań. Po długiej hossie jaka wystąpiła w 2021 roku przyszedł czas na bessę. Spadek kurs trwał aż do lutego bieżącego roku kiedy to wartość kryptowaluty osiągnęła duże oscylacje wokół 40000$. Pod wpływem wybuchu wojny między Rosją i Ukrainą wartość Bitcoina pierw wzrosła ale w związku z dużą inflacją oraz niepewnością gospodarczą kurs zaczął ponowie spadać. Kolejnym czynnikiem wpływającym na kurs było coraz mniejsza ilość tokenów możliwych do wydobycia, a co za tym idzie coraz trudniejszy proces. Od czerwca kurs Bitcoina ustabilizował się i oscyluje wokół 20000$ z lekką tendencją spadkową.  
+At the end of 2021, Bitcoin began to decline in value due to a correction in prices. After a long bull market in 2021, it was time for a bear market. The decline continued until February of this year, when the value of the cryptocurrency reached large fluctuations around $40,000. Under the influence of the outbreak of war between Russia and Ukraine, the value of Bitcoin initially rose, but due to high inflation and economic uncertainty, the price began to fall again. Another factor influencing the price was the decreasing number of tokens available for mining, and thus the increasingly difficult process. Since June, the price of Bitcoin has stabilised and is fluctuating around $20,000 with a slight downward trend.  
 
-Token BTC jest bardzo związany z aktualną sytuacją polityczną i gospodarczą. Na kurs
-kryptowaluty mają duży wpływ zarówno kraje i ich decyzje jak i duże liczące się na giełdzie
-spółki. Wartość Bitcoina może być w łatwy sposób manipulowana w zależności od decyzji
-podjętych przez osoby wysoko postawionych co ma ujemny wpływ na niezależność
-kryptowaluty.
+The BTC token is closely linked to the current political and economic situation. The exchange rate of cryptocurrencies is greatly influenced by both countries and their decisions, as well as large companies listed on the stock exchange.  The value of Bitcoin can be easily manipulated depending on the decisions
+made by high-ranking individuals, which has a negative impact on the independence of cryptocurrencies.
 
 
 
@@ -1012,17 +1009,17 @@ bitcoin.describe()
 
 
 
-Wyświetlenie statystyk dla każdej kolumny danych Bitcoina:
-* 'count' - liczba wierszy, suma długości wszystkich szeregów czasowych
-* 'mean' - wartość średnia
-* 'std' - wartość odchylenia standardowego
-* 'min' - wartość minimalna
-* '25%' - kwartyl dolny, percentyl dwudziesty piąty
-* '50%' - wartość środkowa, mediana, percentyl pięćdziesiąty
-* '75%' - kwartyl górny, percentyl siedemdziesiąty piąty
-* 'max' - wartość maksymalna
+Display statistics for each Bitcoin data column:
+* “count” - number of rows, sum of the lengths of all time series
+* “mean” - mean value
+* “std” - standard deviation value
+* “min” - minimum value
+* “25%” - lower quartile, twenty-fifth percentile
+* “50%” - median value, 50th percentile
+* “75%” - upper quartile, 75th percentile
+* “max” - maximum value
 
-Powyższa tabela ze statystykami pozwala na dokładniejszą analizę kursu Bitcoina. Wartość minimalna jaką osiągnął Bitcoin od początku 2019 roku wynosi 3349,92$ natomiast największa 69000$. Odchylenie standardowe jest bardzo duże co oznacza duże zróżnicowanie notowań kryptowaluty. Wartość percentyli powierdza, że przez większość czasu wartości osiągały jednak niższe notowania. Wartość średnia wynosi około 23700$ natomiast mediana niecałe 18300$. Występuje dość duża różnica między tymi wartościami co powtierdza duże zróżnicowanie kursu oraz krótkie okresy czasu gdy wartość Bitcoina osiągał największe wartości.
+The above table with statistics allows for a more accurate analysis of the Bitcoin exchange rate. The minimum value reached by Bitcoin since the beginning of 2019 is $3,349.92, while the maximum is $69,000. The standard deviation is very high, which means that there is a large variation in the cryptocurrency's exchange rate. The percentile values confirm that most of the time, the values were lower. The average value is around $23,700, while the median is just under $18,300. There is a fairly large difference between these values, which confirms the high volatility of the exchange rate and the short periods of time when Bitcoin reached its highest values.
 
 
 ```python
@@ -1039,7 +1036,7 @@ def plot_time_series(time_series, crypto_title):
     plt.show()
 ```
 
-Funkcja *plot_time_series* służy do tworzenia wykresu rozkładu szeregów czasowych danej kryptowaluty oraz wykresu prawdpodobieństwa, w celu analizy poszczególnych kryptowalut.
+The *plot_time_series* function is used to create a graph of the distribution of time series for a given cryptocurrency and a probability graph for the purpose of analysing individual cryptocurrencies.
 
 
 ```python
@@ -1090,17 +1087,17 @@ pd.DataFrame(bitcoin_stat, columns = list(["Statystyki Bitcoina"]),
 
 
 
-Wyliczone statyski stopy zwrotu Bitcoina pokazują, że odchylenie standardowe jest wysokie w stosunku do wartości średniej.
-Skośność równa -0.7 oznacza ogon lewostronny histogramu, co możemy zaobserwować na powyższym wykresie rozkładu stopy zwrotu.
-Dodatnia kurtoza mówi o większej ilości dodatnich wartości odstających, co również jest pokazane na wykresie (wyższe słupki z dodatnimi wartościami).
-Obie te statystki świadczą o tym, że rozkład stopy zwrotu jest daleki od rozkładu normalnego.
+The calculated statistics for Bitcoin's rate of return show that the standard deviation is high in relation to the mean value.
+A skewness of -0.7 indicates a left-sided tail of the histogram, which can be observed in the above graph of the rate of return distribution.
+Positive kurtosis indicates a greater number of positive outliers, which is also shown in the chart (higher bars with positive values).
+Both of these statistics indicate that the return distribution is far from normal.
 
 
-## 8. Analiza kryptowalut względem aktywów na giełdzie
+## 8. Analysis of cryptocurrencies in relation to assets on the stock exchange
 
-Założeniem tej części analizy jest porównie aktywów cyfrowych z aktywami rzeczywistaymi na giełdach, w celu znalezienia korleacji pomiędzy poszczególnymi aktywami. Spośród wcześniej prezentowanych stu najpopularniejszych kryptowalut wybrano Bitcoina, Ethereum, Binance Coin oraz Ripple. W przypadku aktywów giełdowych wybrano kurs surowców takich jak złoto i srebro. Wybrano również kurs indeksu S&P 500 oraz indeksu dolara czyli stosunek dolara amerykańskiego do koszyka walut obcych.
+The aim of this part of the analysis is to compare digital assets with real assets on stock exchanges in order to find correlations between individual assets. From the previously presented 100 most popular cryptocurrencies, Bitcoin, Ethereum, Binance Coin and Ripple were selected. In the case of stock market assets, the prices of commodities such as gold and silver were selected. The S&P 500 index and the dollar index, i.e. the ratio of the US dollar to a basket of foreign currencies, were also selected.
 
-### 8.1. Pobranie danych z giełdy kryptowalut
+### 8.1. Downloading data from the cryptocurrency exchange
 
 
 ```python
@@ -1109,7 +1106,7 @@ begin_int = data_change('01 01 2022')
 end_int = data_change('10 12 2022')
 ```
 
-W celu wykonania dokładniejszej analizy postanowiono zmienić daty na okres od początku do końca 2022 roku. Zmianie uległa również częstotliwość pobierania danych. Dane są aktualizowane dziennie a nie tygodniowo jak było to wykonane podczas pierwszej analizy.
+In order to perform a more accurate analysis, it was decided to change the dates to the period from the beginning to the end of 2022. The frequency of data collection has also changed. The data is updated daily rather than weekly, as was the case during the first analysis.
 
 
 ```python
@@ -1138,7 +1135,7 @@ data_df['Czas zamknięcia'] = pd.to_datetime(data_df['Czas zamknięcia']/1000, u
 ```
 
 
-Stworzenie nowej tabeli z przetworzonymi danymi spersonalizowanymi, które zostaną wykorzystane podczas analizy.
+Creating a new table with processed personalised data that will be used during the analysis.
 
 
 ```python
@@ -1150,7 +1147,7 @@ crypto2022['log_return'] = np.log(crypto2022.close / crypto2022.close.shift(1))
 crypto2022 = crypto2022.replace([np.inf,-np.inf, np.nan], 0)
 ```
 
-Wprowadzenie wartości logarytmicznych identycznie jak podczas wcześniejszej analizy. Wykorzystano również zamianę wartości brakujących na wartość równą 0.
+Introduction of logarithmic values identical to those used in the previous analysis. Missing values were also replaced with a value equal to 0.
 
 
 ```python
@@ -1176,7 +1173,7 @@ crypto_asset = crypto_asset.set_index('Date')
 crypto_asset.index = pd.to_datetime(crypto_asset.index)
 ```
 
-Stworzenie tabeli zawierającej datę oraz wartość logarytmiczną zwrotu dla wcześniej podanych kryptowalut. Dane zawarte w tabeli są odpowiednio przetworzone.
+Creation of a table containing the date and logarithmic return value for the previously specified cryptocurrencies. The data contained in the table has been processed accordingly.
 
 
 ```python
@@ -1286,14 +1283,14 @@ crypto_asset.head(len(crypto_asset))
 
 
 
-### 8.2. Pobieranie danych aktywów rzeczywistych z giełdy
+### 8.2. Downloading real asset data from the stock exchange
 
 
 ```python
-quandl.ApiConfig.api_key = 'jou3Hy9N_sKPZxy9mgxt'
+quandl.ApiConfig.api_key = “...”
 ```
 
-Dostęp do danych zawartych na stronie data.nasdaq (dawniej quandl) uzyskujemy poprzez specjalny klucz dostępu (*api_key*).
+Access to data contained on the data.nasdaq website (formerly quandl) is obtained through a special access key (*api_key*).
 
 
 ```python
@@ -1301,7 +1298,7 @@ start = datetime(2022, 1, 1)
 end = datetime(2022, 12, 10)
 ```
 
-Wprowadzenie przedziału czasowowego zgodnego z poprzednim podpunktem, w któym pobierano dane dla trzech kryptowalut również od początku roku 2022.
+Enter the time range specified in the previous section, in which data for three cryptocurrencies was also retrieved from the beginning of 2022.
 
 
 ```python
@@ -1315,7 +1312,7 @@ USD_index = yf.download('DX-Y.NYB', start, end)
     [*********************100%***********************]  1 of 1 completed
     
 
-Dane notowań złota i srebra względem różnych walut w zdefiniowanych wcześniej ramach czasowych pobrano z data.nasdaq. Pobrano również notowania indeksu S&P 500 oraz indeksu dolara ze strony Yahoo Finance.
+Data on gold and silver prices relative to various currencies within a predefined time frame was obtained from data.nasdaq. Data on the S&P 500 index and the dollar index was also obtained from Yahoo Finance.
 
 
 ```python
@@ -1336,7 +1333,7 @@ stock_market_asset = stock_market_asset[['USD (AM)', 'USD',  'Adj Close_x', 'Adj
 stock_market_asset.columns = ['Kurs złota', 'Kurs srebra', 'Kurs S&P 500', 'Kurs USD']
 ```
 
-Połączenie w tabelę wcześniej pobranych danych aktyw giełdowych. Pozostawiona zostaje jedyna cena na zamknięciu każdego dnia.
+Combination of previously downloaded stock market data into a table. Only the closing price for each day is retained.
 
 
 ```python
@@ -1439,7 +1436,7 @@ stock_market_asset.head(len(stock_market_asset))
 
 
 
-Kolejno wszystkie ceny zostają zamienione na logarytmiczną stopę zwrotu.
+All prices are then converted into a logarithmic rate of return.
 
 
 ```python
@@ -1450,7 +1447,7 @@ stock_market_asset.drop(index=stock_market_asset.index[0], axis=0, inplace=True)
 ```
 
 
-Pozostawione zostały jedynie wspólne daty, tak by liczba wierszy się zgadzała. Taki zabieg jest niezbędny ze względu na prace giełdy jedynie w dni robocze, podczas gdy giełda kryptowalut jest aktywna codziennie.
+Only common dates have been retained so that the number of rows matches. This is necessary because the stock exchange only operates on working days, while the cryptocurrency exchange is active every day.
 
 
 ```python
@@ -1613,9 +1610,9 @@ eight_assets.head(len(eight_assets))
 
 
 
-Połączenie tabeli z danymi kryptowalut oraz notowań giełdowych, w celu analizy korelacji między tymi notowaniami.
+Combining a table with cryptocurrency data and stock market quotes in order to analyse the correlation between these quotes.
 
-### 8.3. Analiza korelacji
+### 8.3. Correlation analysis
 
 
 ```python
@@ -1630,29 +1627,29 @@ plt.show()
     
 
 
-Powyższy wykres prezentuje macierz korelacji  stopy zwrotu opisanych wyżej aktywów. Można zauważyć, że korelacja pomiędzy wszystkimi kryptowalutami jest bardzo silna i wynosi co najmniej 0,76 a maksymalnie 0,9 (pomijając korelację między tymi samymi aktywami).  
-W przypadku surowców występują takie same zależności co między kryptowalutami co oznacza, że kurs złota i srebra są mocno ze sobą skorelowane. Jeśli sprawdzimy wpływ kryptowalut na owe surowce korelacja jest bliska wartości 0 co oznacza, że nie występuje praktycznie żadna korelacja między nimi.  
-Trzecim aktywem rzeczywistym są notowania S&P 500, które wykazują korelację w stopniu umiarkowanym z kryptowalutami. Największą korelację mają zarówno Bitcoin oraz Ethereum jako kryptowaluty najbardziej wpływowe na rynku. Powiązanie notowań indeksu S&P 500 z wartością złota i srebra jest znikome.
-Ostatnim analizowanym aktywem jest indeks dolara  W wszystkich przypadkach indeks dolara jest skorelowany z innymi aktywami jako główna waluta transakcji na świecie. Co ważne korelacja we wszystkich przypadkach jest ujemna czyli wzrost wartości dolara powoduje obniżenie wartości notowań pozostałych aktywów. Korelacja dolara z kryptowalutami oraz surowcami jest słaba i wynosi odpowiednio około -0,3 i -0,25. Korelacja względem indeksu S&P 500 wynosi -0,48, co potwierdza poprawność wykonania przetwarzania danych.
+The chart above shows the correlation matrix of the rates of return for the assets described above. It can be seen that the correlation between all cryptocurrencies is very strong, ranging from a minimum of 0.76 to a maximum of 0.9 (excluding the correlation between the same assets).  
+In the case of commodities, the same relationships exist as between cryptocurrencies, which means that the prices of gold and silver are strongly correlated. If we check the impact of cryptocurrencies on these commodities, the correlation is close to 0, which means that there is virtually no correlation between them.  
+The third real asset is the S&P 500 index, which shows a moderate correlation with cryptocurrencies. Bitcoin and Ethereum, as the most influential cryptocurrencies on the market, have the highest correlation. The correlation between the S&P 500 index and the value of gold and silver is negligible.
+The last asset analysed is the dollar index. In all cases, the dollar index is correlated with other assets as the main currency of transactions in the world. Importantly, the correlation in all cases is negative, i.e. an increase in the value of the dollar causes a decrease in the value of other assets. The correlation between the dollar and cryptocurrencies and commodities is weak, at around -0.3 and -0.25, respectively. The correlation with the S&P 500 index is -0.48, which confirms the correctness of the data processing.
 
-## 9. Zastosowanie wybranych algorytmów uczenia maszynowego
+## 9. Application of selected machine learning algorithms
 
-W tym rozdziale stworzony zostanie model bazowy służący do pogrupowania wszystkich analizowanych kryptowalut. Po odpowiednim przygotowaniu danych wykonane zostanie:
-- zmniejszenie wymiarowości za pomocą metody PCA
-- klastrowanie metodą k-średnich
-- ocena modeli za pomocą współczynników: Silhoutte Score oraz indeks Calińskiego-Harabasza
-- przedstawienie wyników klasteryzacji
+In this chapter, a base model will be created to group all analysed cryptocurrencies. After appropriate data preparation, the following will be performed:
+- dimensionality reduction using the PCA method
+- clustering using the k-means method
+- evaluation of models using the following coefficients: Silhouette Score and Caliński-Harabasz index
+- presentation of clustering results
 
-Oczekiwanym rezultatem klasteryzacji jest pogrupowanie kryptowalut, dzięki czemu możliwa będzie ocena, w które z nich warto zainwestować, a których lepiej unikać.
+The expected result of clustering is the grouping of cryptocurrencies, which will make it possible to assess which ones are worth investing in and which ones are better to avoid.
 
-### 9.1. Przygotowanie danych
+### 9.1. Data preparation
 
 
 ```python
-crypto_mean = pd.DataFrame(crypto.groupby('slug').mean())
+crypto_mean = pd.DataFrame(crypto.groupby(“slug”).mean())
 ```
 
-Dane wykorzystywane w klastrowaniu nie mogą przyjmować formy szeregów czasowych. Od teraz każda kryptowaluta będzie posiadać jedną wartość w każdej kolumnie. W tym celu obliczona została średnia wartość dla wszystkich kompentów danej kryptowaluty.
+The data used in clustering cannot take the form of time series. From now on, each cryptocurrency will have one value in each column. For this purpose, the average value for all components of a given cryptocurrency was calculated.
 
 
 ```python
@@ -1666,10 +1663,10 @@ ret_skew.columns = ['skew']
 ret_kurt.columns = ['kurt']
 ```
 
-Ponadto obliczone zostały dodatkowe wskaźniki bazujące na średniej z logarytmicznej stopy zwrotu każdej kryptowaluty:
-- odchylenie standardowe
-- skośność
-- kurtoza
+In addition, additional indicators based on the average logarithmic return rate of each cryptocurrency were calculated:
+- standard deviation
+- skewness
+- kurtosis
 
 
 ```python
@@ -1680,7 +1677,7 @@ df.dropna(inplace = True)
 ```
 
 
-Wybranie danych do klastrowania:
+Selecting data for clustering:
 
 
 ```python
@@ -1856,15 +1853,14 @@ df
 
 
 
-Model klastrujący nie może zawierać naszych wszystkich kolumn, gdyż niektóre z nich nie mają żadnego wpływu na przynależność kryptowaluty pod kątem opłacalności. Badania danych takich jak ceny w ciągu dnia lub ranking krytpowaluty niepotrzebnie zakłamałyby otrzymane wyniki.
-W tym celu pozostawione zostaną jedynie następujące parametry:
-- stosunke ceny zamknięcia do otwarcia
+The clustering model cannot include all of our columns, as some of them have no impact on the profitability of a cryptocurrency. Analysing data such as intraday prices or cryptocurrency rankings would unnecessarily distort the results.
+For this purpose, only the following parameters will be retained:
+- closing price to opening price ratio
 - spread
-- logarytm kapitalizacji rynkowej
-- logorytm wolumenu
-- logartm średniej ceny zamknięcia
-- średnia logarytmiczna stopa zwrotu wraz z jej odchyleniem standardowym, skośnością i kurtozą
-
+- logarithm of market capitalisation
+- logarithm of volume
+- logarithm of average closing price
+- logarithmic average rate of return with its standard deviation, skewness and kurtosis
 
 ```python
 crypto_scaled = scale(df)
@@ -1878,11 +1874,11 @@ crypto_scaled.std(axis=0)
 
 
 
-Ostatecznie wszystkie wykorzystywane dalej wartości zostają przeskalowne, tak by ich średnia była równa 0, a wariancja 1.
+Ultimately, all values used further are rescaled so that their mean is equal to 0 and their variance is equal to 1.
 
-### 9.2. Redukcja wymiarowości za pomocą Analizy Składowych Głównych (PCA)
+### 9.2. Dimension reduction using Principal Component Analysis (PCA)
 
-Przygotowany zbiór poddany zostanie redukcji wymiarowości metodą PCA. Naszym celem jest pozostawienie jak największej ilości wariancji oryginalnego zbioru. Sam algorytm PCA bazuje na liniowej redukcji wymiarowości przy użyciu rozkładu wartości osobliwych. Polega on na rzutowaniu danych do przestrzeni o mniejszej liczbie wymiarów tak, aby jak najlepiej zachować strukturę danych. Analiza PCA opiera się o wyznaczanie osi zachowującej największą wartość wariancji zbioru uczącego. Składowe wyznaczamy jako kombinacje liniową badanych zmiennych. Idea tworzenia kolejnych składowych polega na tym, że kolejne składowe nie są skorelowane ze sobą oraz mają na celu zmaksymalizować zmienność, która nie została wyjaśniona przez poprzednią składową. Jako wstępny etap jest tu również wykorzystywana standaryzacja danych.
+The prepared set will be subjected to dimension reduction using the PCA method. Our goal is to retain as much of the variance of the original set as possible. The PCA algorithm itself is based on linear dimensionality reduction using singular value decomposition. It involves projecting the data into a space with fewer dimensions in order to best preserve the data structure. PCA analysis is based on determining the axis that preserves the highest variance value of the training set. The components are determined as linear combinations of the variables under study. The idea behind creating successive components is that they are not correlated with each other and are intended to maximise the variability that has not been explained by the previous component. Data standardisation is also used as a preliminary step here.
 
 
 ```python
@@ -1890,8 +1886,7 @@ pca = PCA(n_components=4)
 crypto_pca1 = pca.fit_transform(crypto_scaled)
 ```
 
-Na początku wykorzystane będą 4 składowe komponenty PCA, w celu zbadania ile informacji zostanie zachowanych.
-
+At the beginning, four PCA components will be used to examine how much information will be retained.
 
 ```python
 df_crypto_pca1 = pd.DataFrame(data=crypto_pca1,
@@ -1954,10 +1949,10 @@ df_crypto_pca1.head()
 
 
 ```python
-print("Przy {} komponentach składowych pozostało {:.2f}% początkowej wariancji zbioru".format(4, pca.explained_variance_ratio_.sum()*100))
+print("With {} components, {:.2f}% of the initial variance of the set remains".format(4, pca.explained_variance_ratio_.sum()*100))
 ```
 
-    Przy 4 komponentach składowych pozostało 78.38% początkowej wariancji zbioru
+    With 4 components, 78.38% of the initial variance of the set remains.
     
 
 
@@ -1977,8 +1972,7 @@ plt.show()
     
 
 
-W celu zachowania jak największej ilości informacji i jak najmniejszej ilości komponentów model PCA zostanie dostosowany tak, by zachował 90% wariancji.
-
+In order to retain as much information as possible and as few components as possible, the PCA model will be adjusted to retain 90% of the variance.
 
 ```python
 pca2 = PCA(n_components=.90)
@@ -2058,10 +2052,10 @@ transformed_crypto_pca.head()
 
 
 ```python
-print("Przy {} komponentach składowych pozostało {:.2f}% początkowej wariancji zbioru".format(len(transformed_crypto_pca.columns), pca2.explained_variance_ratio_.sum()*100))
+print("With {} components, {:.2f}% of the initial variance of the set remains.".format(len(transformed_crypto_pca.columns), pca2.explained_variance_ratio_.sum()*100))
 ```
 
-    Przy 6 komponentach składowych pozostało 93.57% początkowej wariancji zbioru
+    With 6 components, 93.57% of the initial variance of the set remains.
     
 
 
@@ -2080,11 +2074,11 @@ plt.show()
     
 
 
-### 9.3. Klastrowanie metodą k-średnich
+### 9.3. Clustering using the k-means method
 
-Algorytm centroidów polega na znalezieniu liczby k-punktów będących "środkami ciężkości" centroidów w zbiorze danych. Środek ciężkości to lokalizacja reprezentująca środek pomiędzy wszystkimi pobliskimi punktami. Pierwsze środki ciężkości generujemy losowo i musi być ich tyle, na ile klastrów chcemy podzielić nasz zbiór danych, a w następnych krokach dokonujemy iteracyjne obliczenia w celu optymalizacji pozycji centroidów. Algorytm zatrzymuje swoje działanie, gdy centroidy (czyli *i* nie zmieniają się już, czyli ustabilizowały się, a także wówczas, gdy zdefiniowana liczba iteracji została osiągnięta. Warto zaznaczyć, że tego typu podejście nie wykrywa klastrów wklęsłych.
+The centroid algorithm involves finding the number of k-points that are the ‘centres of gravity’ of the centroids in the data set. The centre of gravity is the location representing the centre between all nearby points. The first centres of gravity are generated randomly and there must be as many of them as the number of clusters into which we want to divide our data set. In the next steps, we perform iterative calculations to optimise the positions of the centroids. The algorithm stops when the centroids (i.e. *i*) no longer change, i.e. they have stabilised, and when the defined number of iterations has been reached. It is worth noting that this type of approach does not detect concave clusters.
 
-#### 9.3.1. Klastrowanie całego zbioru danych
+#### 9.3.1. Clustering the entire data set
 
 
 ```python
@@ -2096,7 +2090,7 @@ for i in k:
     inertia.append(km.inertia_)
 ```
 
-Przyjęto liczbę klastrów (*n_clusters*) równą zmiennej *i*. W przykładzie powyższym wykorzystano inercję, czyli bezwładność, która zakłada, że powstałe klastry składają sie z grup wypukłych punktów. Inercja jest obliczana, jako odległość pomiędzy daną kolumną (wierszem, punktem), a średnią wartością dla kolumn (wierszy). Im większa inercja tym punkty są oddalone dalej od średniego profilu wiersza/kolumny. Słabo sprawdza się ona przy klastrach o bardziej wydłużonych i nieróżnorodnych kształtach.
+The number of clusters (*n_clusters*) was set equal to the variable *i*. In the example above, inertia was used, which assumes that the resulting clusters consist of groups of convex points. Inertia is calculated as the distance between a given column (row, point) and the average value for the columns (rows). The greater the inertia, the further the points are from the average row/column profile. It does not work well with clusters that are more elongated and less diverse in shape.
 
 
 ```python
@@ -2109,29 +2103,29 @@ for i in k:
     ch_index.append(metrics.calinski_harabasz_score(crypto_scaled, kmeans.labels_))
 ```
 
-Wykorzystano listę *silhouette_score* oraz *ch_index* do zapisania wyników współczynnika silhouette (średni współczynnik sylwetki) oraz indeksu CH wszystkich próbek. W obu przypadkach największa wartość definiuje najbardziej korzystną liczbę klastrów. Indeks CH został wyliczony na podstawie wzoru:
+The *silhouette_score* and *ch_index* lists were used to record the silhouette coefficient (average silhouette coefficient) and CH index results for all samples. In both cases, the highest value defines the most favourable number of clusters. The CH index was calculated using the following formula:
 $$
 CH = \frac{b}{a},
 $$
- gdzie:  
- a - średnia odległość między punktami w klastrze do środka ciężkości danego klastra (spójność),  
- b - średnia ogległość między środkami ciężkości klastra od globalnego środka ciężkości (separacja).  
+ where:  
+ a - average distance between points in a cluster to the centre of gravity of that cluster (cohesion),  
+ b - average distance between the centres of gravity of the cluster and the global centre of gravity (separation).  
 
-Indeks Calińskiego-Harabasza informuje o podobieństwie między obiektu do własnego skupienia względem innych skupień. Im większa wartość indeksu tym klastry są gęstrze i dobrze rozdzielone. Wyliczona wartość indeksu pozwala na określenie najbardziej korzystnej liczby klastrów oraz pozwala na porównanie algorytmów klastrowania między sobą.  
-Wartość silhouette została wylicozna na podstawie wzoru:
+The Caliński-Harabasz index provides information about the similarity between an object and its own cluster in relation to other clusters. The higher the index value, the denser and better separated the clusters are. The calculated index value allows the most favourable number of clusters to be determined and enables clustering algorithms to be compared with each other.  
+The silhouette value was calculated using the following formula:
 $$
 silhouette = \frac{(b-a)}{max(a,b)},
 $$
- gdzie:  
- a - średnia odległość między punktami klastra,  
- b - średnia ogległość od najbliższego klastra dla każdego punktu.  
+ where:  
+ a - average distance between cluster points,  
+ b - average distance from the nearest cluster for each point.
 
-Z powyższego wzoru można zauważyć, że jeśli *a* będzie większe od *b*, to konkretna obserwacja ma dalej do obserwacji w swojej grupie (średnia odległość), a bliżej do obserwacji w sąsiedniej. Wówczas nasze równanie przyjmuje formę wzoru:
+From the above formula, it can be seen that if *a* is greater than *b*, then a particular observation is further away from observations in its group (average distance) and closer to observations in the neighbouring group. In this case, our equation takes the form:
 $$
 \frac{(b-a)}{a} = \frac{b}{a} - 1,
 $$
-Skoro *a* było większe, to *b/a* będzie mniejsze niż 1, czyli całe równanie będzie mniejsze od 0. Analogicznie, jeśli *a* będzie mniejsze od *b* uzyska się wartość większą od 0.  
-Z jednej strony, wartość *a* informuje o bliskości innych elementów wewnątrz grupy. Nie jest to zasadniczo gęstość, ale dostarcza informacji o cisno upakowanej grupie. Z kolei wartość *b* pokazuje, jak daleko znajduje się punkt od najbliższej innej grupy. Czyli mówi o separacji. Im większa, tym lepiej punkty są od siebie odeseparowane. Najlepiej więc, aby *a* było małe (blisko do „sojuszników”), i *b* duże (daleko do „wrogów”). Wyznaczenie maksymalnej wartości silhouette może pozwolić na poprawne określenie rozwiązania problemu separacja-koncentracja i w ten sposób umożliwia wyznaczenie najlepszego *k*. Można zaznaczyć, że algorytm informuje również o tym, czy dana funkcja grupująca poprawnie pogrupowała wartości. Jeśli współczynnik sylwetki wyjdzie ujemny, oznacza to, że uzyskano błędnie pogrupowane wartości.
+Since *a* was greater, *b/a* will be less than 1, meaning that the entire equation will be less than 0. Similarly, if *a* is less than *b*, the value will be greater than 0.  
+On the one hand, the value *a* informs us about the proximity of other elements within the group. This is not essentially density, but it provides information about how tightly packed the group is. On the other hand, the value of *b* shows how far the point is from the nearest other group. In other words, it indicates separation. The greater the value, the better the points are separated from each other. Therefore, it is best for *a* to be small (close to ‘allies’) and *b* to be large (far from ‘enemies’). Determining the maximum silhouette value can allow for the correct determination of the separation-concentration problem and thus enable the determination of the best *k*. It should be noted that the algorithm also informs whether a given grouping function has correctly grouped the values. If the silhouette coefficient is negative, it means that the values have been grouped incorrectly.
  
 
 
@@ -2158,9 +2152,9 @@ plt.show()
     
 
 
-#### 9.3.2. Klastrowanie zbioru zredukowanego przez PCA
+#### 9.3.2. Clustering of the set reduced by PCA
 
-W tym podejściu wykorzystujemy metodę redukcji wymiarowości PCA po której stosujemy algorytm k-średnich. Występuje zatem powtórzenie etapów poprzedniego klastrowania:
+In this approach, we use the PCA dimension reduction method, followed by the k-means algorithm. Therefore, the steps of the previous clustering are repeated:
 
 
 ```python
@@ -2207,7 +2201,7 @@ plt.show()
     
 
 
-#### 9.3.3. Wybranie najlepszego modelu
+#### 9.3.3. Choosing of the best model
 
 
 ```python
@@ -2229,13 +2223,13 @@ print("Indeks Calińskiego-Harabasza: {:.2f}".format(max(ch_index_pca)))
     Indeks Calińskiego-Harabasza: 36.76
     
 
-Powyższe wartości miar pokazują, że model uzyskał lepszą skuteczność dla danych wcześniej zredukowanych poprzez PCA. W obu przypadkach wartości są większe niż model bez zredukowanych wymiarów. Ważną obserwacją jest brak spójności wyników modelu bez PCA (wykres z podpunktu 9.3.1). Wartość współczynnika Silhoutte wskazuje na optymalne rozwiązanie dla 14 klastrów natomiast wartość indeksu CH dla 6 klastrów. W przypadku modelu z redukcją wymiarów za pomocą metody PCA (wykres z podpunktu 9.3.2) największe wartości miar dobroci modelu zostały wyliczone w obu przypadkach dla 6 klastrów, co oznacza spójność wyników. Informacja ta jest kolejnym argumentem potwierdzającym wyższość modelu z redukcją wymiarowości niż bez. Dodatkowo na wykresie bezwładności (podpunkt 9.3.2) widoczny jest tzw. "łokieć", czyli miejsce, gdy wartość inercji spada wyraźnie wolniej. Dalszej analizie poddano jedynie model z 6 klastrami zaimplementowany na danych ze zmiejszoną wymiarowością. 
+The above metric values show that the model achieved better performance for data previously reduced by PCA. In both cases, the values are higher than those for the model without reduced dimensions. An important observation is the lack of consistency in the results of the model without PCA (graph from section 9.3.1). The Silhouette coefficient value indicates the optimal solution for 14 clusters, while the CH index value indicates 6 clusters. In the case of the model with dimensionality reduction using the PCA method (graph from subsection 9.3.2), the highest values of model goodness measures were calculated in both cases for 6 clusters, which means consistency of results. This information is another argument confirming the superiority of the model with dimensionality reduction over the model without it. Additionally, the inertia graph (section 9.3.2) shows the so-called ‘elbow’, i.e. the point where the inertia value decreases significantly more slowly. Only the model with 6 clusters implemented on data with reduced dimensionality was subjected to further analysis. 
 
-### 9.4. Przedstawienie wyników klasteryzacji
+### 9.4. Presentation of clustering results
 
-#### 9.4.1. Wyniki modelu końcowego
+#### 9.4.1. Final model results
 
-Dokonana zostanie klasteryzacja danych po przejściu przez metodę PCA, a następnie stworzonych zostanie 6 klastrów, które zostaną zaprezntowane na histogramie oraz zostanie przedstawiona tabela przypisująca daną kryptowlautę do odpowiedniego klastra.
+The data will be clustered after passing through the PCA method, and then 6 clusters will be created, which will be presented in a histogram and a table assigning a given cryptocurrency to the appropriate cluster will be presented.
 
 
 ```python
@@ -2390,7 +2384,7 @@ plt.show()
     
 
 
-Można zauważyć, że na powyższym histogramie do dwóch klastrów zostało przydzielone tylko po jednej walucie. Jest to kryptowaluta upadła oraz kryptowaluta niedawno powstała. Oby dwa tokeny w dużym stopniu odstają od pozostałych.
+It can be seen that in the histogram above, only one currency has been assigned to each of the two clusters. These are a defunct cryptocurrency and a recently created cryptocurrency. Both tokens stand out significantly from the rest.
 
 
 ```python
@@ -2747,17 +2741,17 @@ results
 
 
 
-Kryptowaluty o największym kursie, wielkości rynku czy stopie zwrotu, jak Bitcoin oraz Ethereum, zostały przydzielone do klastra 0. Oznacza to, że model skutecznie wybrał liderów rynku do jeden grupy, gdyż znalazły się w niej dobrze prosperujące kryptowaluty, takie jak: LiteCoin, Cardano, Polkadot, Solana, BinanceCoin. Dużą zaletą modelu jest oddzielenie walut o bardzo niskim kursie, które zaliczyły upadek, tak jak terraclassic. Daje to jasną informację, że należy ich unikać.
+Cryptocurrencies with the highest exchange rates, market capitalisation and rates of return, such as Bitcoin and Ethereum, were assigned to cluster 0. This means that the model effectively selected market leaders for one group, as it included thriving cryptocurrencies such as LiteCoin, Cardano, Polkadot, Solana and BinanceCoin. A major advantage of the model is that it separates currencies with very low exchange rates that have collapsed, such as terraclassic. This gives a clear indication that they should be avoided.
 
-#### 9.4.2. Wizualizacja wyników w 2D
+#### 9.4.2. Visualisation of results in 2D
 
 
 ```python
 tsne = TSNE()
-tsne_features = tsne.fit_transform(transformed_crypto_pca)
+tsne_features = tsne.fit_transform (transformed_crypto_pca)
 ```
 
-Dane zostają zredukowane do dwóch wymiarów za pomocą metody t-SNE. Jest to technika nieliniowej redukcji wymiarowości bazującej na podobieństwie między punktami. Metoda ta skupia się na zachowaniu lokalnej struktury danych i działa poprzez minimalizowanie odległości między punktami w gausie.
+The data is reduced to two dimensions using the t-SNE method. This is a non-linear dimensionality reduction technique based on the similarity between points. This method focuses on preserving the local structure of the data and works by minimising the distance between points in a Gaussian distribution.
 
 
 ```python
@@ -2862,7 +2856,7 @@ k_means_df.head()
 
 
 
-Dwuwymiarowy zbiór kryptowalut został podzielony na 6 klas.
+The two-dimensional set of cryptocurrencies has been divided into 6 classes.
 
 
 ```python
@@ -2958,5 +2952,6 @@ plt.show()
     
 
 
-Klastrowanie dwuwymiarowych danych jest zabiegiem czysto wizualnym i nie należy kierować się jego wynikami przy dokonywaniu decyzji inwestycyjnych. Pewna część informacji została jednak zachowana, dzięki czemu możemy zaobserwować, że największe kryptowaluty znajdują się w dwóch klastrach (na wykresie żółty i zielony). Tym razem model nie był juz w stanie znaleźć kryptowalut wyraźnie odstających od reszty, co podważa jego wiarygodność.
+Clustering two-dimensional data is purely visual and should not be used to guide investment decisions. However, some information has been retained, allowing us to observe that the largest cryptocurrencies are located in two clusters (yellow and green in the chart). This time, the model was unable to identify cryptocurrencies that clearly stand out from the rest, which undermines its credibility.
+
 
