@@ -2,26 +2,25 @@
 <h2><center>Machine Learning</center></h2>
 <h3><center>PL</center></h3>
 
-## 1. Cel i założenia projektowe
+## 1. Project objectives
 
-Celem projektu jest przeprowadzenie badań dotyczących zachowania rynku kryptowalut. Projekt zawiera analizę zachowania kursów najpopularniejszych kryptowalut na rynku światowym. W tym celu przeprowadzono ogólne rozpoznanie rynku kryptowalut polegające na sprawdzeniu kapitalizacji rynkowej czy udziału stu najpopularniejszych kryptowalut na rynku. Wykonano również analizę Bitcoina jako głównej kryptowaluty, która posiada znaczny udział w rynku kryptowalut i oddziałuje na kursy innych aktywów cyfrowych. Sprawdzono zachowanie Bitcoina w odniesieniu do najważniejszych wydarzeń na świecie oraz innych ciekawych czynników. Zestawiono również dane różynch kryptowalut w celu zweryfikowania zwiazków między nimi. Projekt obejmuje także analizę w odniesieniu do aktywów rzeczywistych na giełdzie takich jak indeks S&P 500, indeks Dolara czy kurs złota i srebra. W analizie zostały również wykorzystane techniki eksploracji danych w celu pogrupowania kryptowalut pod względem ryzyka inwestowania.
+The aim of the project is to conduct research on the behaviour of the cryptocurrency market. The project includes an analysis of the behaviour of the most popular cryptocurrencies on the global market. To this end, a general survey of the cryptocurrency market was conducted, consisting of checking the market capitalisation and share of the 100 most popular cryptocurrencies on the market. An analysis of Bitcoin was also performed as the main cryptocurrency, which has a significant share in the cryptocurrency market and influences the prices of other digital assets. Bitcoin's behaviour was examined in relation to major world events and other interesting factors. Data on various cryptocurrencies was also collated to verify the relationships between them. The project also includes an analysis of real assets on the stock exchange, such as the S&P 500 index, the Dollar index, and the price of gold and silver. Data mining techniques were also used in the analysis to group cryptocurrencies in terms of investment risk.
 
-## 2. Dane projektowe
+## 2. Project data
 
-Dane wykorzystane do analizy zostały pobrane z giełdy Binance, która jest największą giełdą kryptowalut. Gromadzi ona dane od momentu pojawienia się danej kryptowaluty na giełdzie. Oznacza to kompletność danych poszczególnych kryptowalut w zależności od czasu pojawienia się ich na giełdzie Binance. Podczas analizy wykorzystano odpowiednie okresy czasowe tak by istniała możliwość pobrania kompletnego zbioru danych wszystkich potrzebnych kryptowalut.  
+The data used for the analysis was obtained from Binance, the largest cryptocurrency exchange. It collects data from the moment a given cryptocurrency appears on the exchange. This means that the data for individual cryptocurrencies is complete depending on when they appeared on Binance. During the analysis, appropriate time periods were used so that it was possible to download a complete data set for all the necessary cryptocurrencies.  
 
-Dostęp do kursów surowców uzyskano ze strony data.nasdaq natomiast notowania indeksu S&P 500 i indeksu dolara pobrano ze strony Yahoo Finance. Giełdy aktywów rzeczywistych w odróżnieniu od giełd kryptowalut pracują jedynie w dni robocze, co oznacza brak danych w dni wolne od pracy. Rozwiązaniem tego problemu jest odpowiednie przetworzenie danych kryptowalut by odpowiadały datom pobranych notowań giełdowych. 
+Access to commodity prices was obtained from data.nasdaq, while the S&P 500 and dollar index quotes were downloaded from Yahoo Finance. Unlike cryptocurrency exchanges, real asset exchanges only operate on business days, which means that there is no data available on non-business days. The solution to this problem is to process the cryptocurrency data appropriately so that it corresponds to the dates of the downloaded stock exchange quotations.
 
-## 3. Wykorzystane narzędzia
+## 3. Tech Stack
 
-Analiza została wykonana przy użyciu języka programowania Python wraz z gotowymi paczkami umożliwiającymi pobieranie, przetwrzanie oraz wizualizację danych:
-* Biblioteka *Binance* umożliwia pobranie danych zgromadzonych w serwisie Binance, niezbędnych do analizy kursów kryptowalut.
-* Biblioteki *quandl* oraz *yfinance* służą do pobierania danych aktywów z giełdy z stron związanych z ekonomią i finansami.
-* Biblioteki *Pandas*, *NumPy* oraz *SciPy* umożliwiają odpowiednie przetwarzanie danych pobranych z API. Dodatkowo biblioteka *datetime* pozwala na konwersję danych czasowych.
-* Biblioteki *Matplotlib* oraz *seaborn* są bibliotekami, które generują wykresy na podstawie danych. Specjalnie na potrzeby analizy finansowej na podstawie wykresów kursów kryptowalut wykorzystano również bibliotekę *mplfinance*. 
-* Biblioteka *scikit-learn* jest biblioteką wprowadzającą funkcję uczenia maszynowego oraz zawiera różne metody klasyfikacji, regresji oraz klastrowania.
-* Biblioteka *statsmodels* ułatwia eksploracje danych oraz szacowanie modelów statystycznych.
-* Biblioteka *Warnings* służy do wykrywania błędów i informowaniu o ostrzeżeniach.
+The analysis was performed using the Python programming language with ready-made packages enabling data download, processing and visualisation:
+* The *Binance* library enables the download of data collected on the Binance website, necessary for the analysis of cryptocurrency exchange rates.
+* The *quandl* and *yfinance* libraries are used to download asset data from the stock exchange from websites related to economics and finance.
+* The *Pandas*, *NumPy* and *SciPy* libraries enable the appropriate processing of data downloaded from the API. In addition, the *datetime* library allows for the conversion of time data.
+* The *Matplotlib* and *seaborn* libraries generate charts based on data. The *mplfinance* library was also used specifically for financial analysis based on cryptocurrency price charts. 
+* The *Scikit-Learn* library introduces machine learning and contains various classification, regression and clustering methods.
+* The *Statsmodels* library facilitates data exploration and statistical model estimation.
 
 
 ```python
@@ -53,9 +52,9 @@ import warnings
 warnings.filterwarnings("ignore")
 ```
 
-## 4. Pobieranie danych z giełdy Binance
+## 4. Downloading data from the Binance stock market
 
-### 4.1. Dostęp do giełdy Binance
+### 4.1. Access to the Binance exchange
 
 
 ```python
@@ -64,11 +63,11 @@ secret = '...'
 client = Client(apikey, secret)
 ```
 
- Dostęp do danych z API serwisu Binance użyto kodów pełniących funkcję kluczy dostępu (API key oraz secret key). API key, jest to klucz przypisany do zmiennej *apikey* oraz secret key, który przypisujemy do zmiennej *secret*. Oba te klucze są niezbędne do uzyskania danych z API giełdy Binance oraz korzystania wraz z przetwarzaniem danych w dalszej części projektu. Samo uzyskanie kluczy dostępu nie jest rzeczą powszechnie dostępną, gdyż oprócz konta na serwisie Binance, które trzeba weryfikować dowodem osobistym, należy również posiadać min. 90 zł zainwestowanych w kryptowalutach. Po spełnieniu tych kryteriów istnieje możliwość uzyskania dostępu do kluczy dostępu.
+Access to data from the Binance API was obtained using codes that serve as access keys (API key and secret key). The API key is assigned to the *apikey* variable, and the secret key is assigned to the *secret* variable. Both keys are necessary to obtain data from the Binance API and to use and process the data in the further course of the project. Obtaining access keys is not widely available, as in addition to a Binance account, which must be verified with an ID card, you must also have at least PLN 90 invested in cryptocurrencies. Once these criteria are met, it is possible to obtain access keys.
 
-Za pomocą modułu *Client* biblioteki *Binance* uzyskano pełen dostęp do danych giełdy Binance.
+Full access to Binance exchange data was obtained using the *Client* module of the *Binance* library.
 
-### 4.2. Pobieranie danych kryptowalut
+### 4.2. Cryptocurrency data retrieval
 
 
 ```python
@@ -78,7 +77,7 @@ def data_change(data):
     return int(data_int/1000000)
 ```
 
-Funckja *data_change* jest odpowiedzialna za konwertowanie daty zapisanej w formie "dzień miesiąc rok" na ilość milisekund, które mineły od 1 stycznia 1970 roku.
+The *data_change* function is responsible for converting a date stored in the ‘day month year’ format into the number of milliseconds that have elapsed since 1 January 1970.
 
 
 ```python
@@ -89,9 +88,9 @@ begin_int = data_change(begin)
 end_int = data_change(end)
 ```
 
-Wprowadzono zmienne odpowiadające za pobieranie danych z giełdy. Zmienna *interval* definiuje częstotliowść uzyskania danych z giełdy. Natomiast zmienne *begin* i *end* definiują datę początową i końcową pobierania danych. Daty następnie są zamieniane na ilość milisekund, które mineły od 1 stycznia 1970 roku.
+Variables responsible for retrieving data from the stock exchange have been introduced. The *interval* variable defines the frequency of obtaining data from the stock exchange. The *begin* and *end* variables define the start and end dates for data retrieval. The dates are then converted into the number of milliseconds that have elapsed since 1 January 1970.
 
-W projekcie wykorzystujemy dane od początku roku 2019 do teraz. Pobieramy je z tygodniowym interwałem.
+In this project, we use data from the beginning of 2019 to the present. We retrieve it at weekly intervals..
 
 
 ```python
@@ -107,11 +106,11 @@ def take_coin(slug, symbol, name, ranknow):
     return data
 ```
 
-Funkcja *take_coin* służy do pobrania danych danej kryptowaluty względem USDT (cyfrowy odpowiednik dolara) na podstawie nazwy i symbolu. Dodano również nowe kolumny do pobranych danych:
-* 'slug' - unikalny symbol każdej kryptowaluty, wprowadzony by naprawić zduplikowane tokeny udostępniane za pomocą symbolu lub nazwy,
-* 'symbol' - symbol danej kryptowaluty (ticker),
-* 'name' - nazwa kryptowaluty,
-* 'ranknow' - miejsce w rankingu najpopularniejszych kryptowalut
+The *take_coin* function is used to retrieve data for a given cryptocurrency relative to USDT (the digital equivalent of the dollar) based on its name and symbol. New columns have also been added to the retrieved data:
+* “slug” - a unique symbol for each cryptocurrency, introduced to fix duplicate tokens shared using a symbol or name,
+* “symbol” - the symbol of a given cryptocurrency (ticker),
+* “name” - the name of the cryptocurrency,
+* “ranknow” - the position in the ranking of the most popular cryptocurrencies
 
 
 ```python
@@ -127,9 +126,9 @@ for coins in coins_list:
     data += coins
 ```
 
-Pobranie danych z 100 najpopularniejszych kryptowalut na podstawie informacji ze strony CoinMarketCap. Pomijamy stable coiny symulujące cenę dolara do którego się odnosimy.
+Data collected from the 100 most popular cryptocurrencies based on information from CoinMarketCap. We omit stable coins that simulate the price of the dollar to which we refer.
 
-### 4.3. Przetwarzanie danych
+### 4.3. Data processing
 
 
 ```python
@@ -144,20 +143,20 @@ data_df.drop(columns=['Wartość do zignorowania'], axis=1)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Czas otwarcia</th>
-      <th>Kurs na otwarciu</th>
-      <th>Najwyższy kurs w trakcie dnia</th>
-      <th>Najniższy kurs w trakcie dnia</th>
-      <th>Kurs na zamknięciu</th>
-      <th>Ilość kryptowaluty w obiegu</th>
-      <th>Czas zamknięcia</th>
-      <th>Zmiana wolumenu transakcji kryptowaluty</th>
-      <th>Liczba transakcji</th>
-      <th>Ilość wolumenu zrealizowanego</th>
-      <th>Ilość wolumenu niezrealizowanego</th>
+      <th>Opening time</th>
+      <th>Opening price</th>
+      <th>Highest price during the day</th>
+      <th>Lowest price during the day</th>
+      <th>Closing price</th>
+      <th>Amount of cryptocurrency in circulation</th>
+      <th>Closing time</th>
+      <th>Change in cryptocurrency transaction volume</th>
+      <th>Number of transactions</th>
+      <th>Amount of realised volume</th>
+      <th>Amount of unrealised volume</th>
       <th>Slug</th>
       <th>Symbol</th>
-      <th>Nazwa</th>
+      <th>Name</th>
       <th>Ranking</th>
     </tr>
   </thead>
@@ -367,22 +366,22 @@ data_df.drop(columns=['Wartość do zignorowania'], axis=1)
 
 
 
-Podzielenie pobranych danych na odpowiednie kolumny. Natępuje również zamiana na wartości numerycznych zapisanych za pomocą typu *string* na wartości typu *float*, w celu poprawnej analizy danych na wykresach. Wartości czasowe w postaci milisekund zamieniane są na odpowiadjące daty. Usuwamy niepotrzebną kolumnę '*Wartość do zignorowania*'.
+The collected data is divided into appropriate columns. Numerical values stored as *string* are converted to *float* values for correct data analysis in charts. Time values in milliseconds are converted to corresponding dates. The unnecessary column “*Value to be ignored*” is removed.
 
-Bazując na pobranych danych tworzymy nowy *DataFrame* "crypto" w celu zachowania kolumn potrzebnych do dalszej analizy oraz poprawy estetyki.
-W tym punkcie tworzymy kilka nowych zmiennych:
-- *market* - wartość kapitalizacji danej kryptowaluty
-- *close_ratio* - miara straty wartości na koniec każdej sesji (stosunek ceny maksymalnej do ceny zamknięcia)
-- *spread* - amplituda wartości w trakcie jednej sesji
+Based on the downloaded data, we create a new *DataFrame* ‘crypto’ in order to preserve the columns needed for further analysis and improve aesthetics.
+At this point, we create several new variables:
+- *market* - the capitalisation value of a given cryptocurrency
+- *close_ratio* - a measure of the loss in value at the end of each session (the ratio of the maximum price to the closing price)
+- *spread* - the amplitude of the value during a single session
 
-### 4.4 Wprowadzenie danych logarytmicznych
+### 4.4 Entering logarithmic data
 
-W celu przeanalizowania dynamiki kryptowalut w czasie zmodyfikowano dane poprzez:
-* wprowadzenie logarytmicznej skali w okresie lat 2019-2022 z powodu dużego (wykładniczego) tempa zmian wartości kryptowalut (w porównaniu do klasycznej giełdy),
-* wstawienie wartości '0' w miejsce ewentualnie brakujących danych,
-* usunięcie błędnie pobranych wierszy. Nieliczne kryptowaluty posiadały dodatkowe wiersze, w tym celu zostawiamy jedynie rzędy w których data zgadza się z datami bitcoina
-* dodanie zmiennej *birth_time* informujący o wieku (niektóre krytpowaluty powstały po 2019 roku)
-* dodanie zmiennej *log_return* informujące o stopie zwrotu inwestora tydzień do tygodnia
+In order to analyse the dynamics of cryptocurrencies over time, the data was modified by:
+* introducing a logarithmic scale for the period 2019-2022 due to the high (exponential) rate of change in the value of cryptocurrencies (compared to the traditional stock market),
+* inserting a value of “0” in place of any missing data,
+* removing incorrectly downloaded rows. A few cryptocurrencies had additional rows, so we only left the rows where the date matched the Bitcoin dates
+* adding the variable *birth_time* indicating the age (some cryptocurrencies were created after 2019)
+* adding the *log_return* variable indicating the investor's week-to-week rate of return
 
 
 ```python
@@ -676,23 +675,23 @@ crypto.head(len(crypto['date']))
 
 
 
-## 5. Przegląd rynku kryptowalut
+## 5. Cryptocurrency market overview
 
 
 ```python
 crypto_market = crypto.groupby('date')[['market']].sum()
 ```
 
-Grupowanie i zsumowanie danych po dacie dla kolumny '*market*' oraz '*volume*', w celu uzyskania informacji o rozmiarze rynku oraz wolumenie kryptowalut w danym dniu.
+Grouping and summing data by date for the “*market*” and “*volume*” columns to obtain information about the market size and volume of cryptocurrencies on a given day.
 
 
 ```python
 sns.set(style="whitegrid")
 fig, ax = plt.subplots(figsize=(9,6))
-ax.set_title('Całkowita wartość rynku')
-plt.xlabel('Data')
-plt.ylabel('Wartość rynku')
-sns.lineplot(data=crypto_market.market, color="#0000ac", label='Kapitalizacja rynkowa')
+ax.set_title('Total market value')
+plt.xlabel('Date')
+plt.ylabel('Market value')
+sns.lineplot(data=crypto_market.market, color="#0000ac", label='Market capitalisation')
 plt.show()
 ```
 
@@ -702,10 +701,10 @@ plt.show()
     
 
 
-No powyższym wykresie możemy zauważyć, że wartość rynku kryptowalut była najwyższa w połowie 2021 roku. Po bardzo szybkim wzroście nastąpiło równie szybkie załamanie rynku.
+In the chart above, we can see that the value of the cryptocurrency market was highest in mid-2021. The rapid growth was followed by an equally rapid market collapse.
 
-W celu pokazania aktualnego rozkładu kapitalizacji rynkowej na giełdzie Binance, porównamy jej wartości dla ostatniego dnia naszych szeregów czasowych, tj. 12.04.2022.
-Porównanie zostanie zwizualizowane na wykresie kołowym dla 10 największych kryptowalut.
+In order to show the current distribution of market capitalisation on the Binance exchange, we will compare its values for the last day of our time series, i.e. 12 April 2022.
+The comparison will be visualised in a pie chart for the 10 largest cryptocurrencies.
 
 
 ```python
@@ -713,15 +712,15 @@ crypto_snap['composition'] = np.where(crypto_snap.ranknow <= 10, crypto_snap.ran
 crypto_market_comp = crypto_snap.groupby(by = ['composition'])['market'].sum()
 ```
 
-Stworzenie jedynastu przedziałów, które bedą zawierać dziesięć najpopularniejszych kryptowalut oraz wartość zsumowaną od jedynastej do setnej kryptowaluty.
+Creation of eleven compartments, which will contain the ten most popular cryptocurrencies and the total value from the eleventh to the hundredth cryptocurrency.
 
 
 ```python
-labels = crypto_snap[crypto_snap.ranknow <= 11].name.replace('Uniswap', 'Pozostałe kryptowaluty')
+labels = crypto_snap[crypto_snap.ranknow <= 11].name.replace('Uniswap', 'Other cryptocurrencies')
 sizes = crypto_market_comp
 explode = (0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0, 0, 0)
 fig, ax = plt.subplots(figsize=(8,8))
-ax.set_title('Udział największych kryptowalut w całym rynku', fontsize=20)
+ax.set_title('Participation of the largest cryptocurrencies in the entire market', fontsize=20)
 ax.pie(sizes, explode = explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90, textprops={"fontsize":14}, 
         labeldistance=1.2, pctdistance=0.9)
@@ -2960,3 +2959,4 @@ plt.show()
 
 
 Klastrowanie dwuwymiarowych danych jest zabiegiem czysto wizualnym i nie należy kierować się jego wynikami przy dokonywaniu decyzji inwestycyjnych. Pewna część informacji została jednak zachowana, dzięki czemu możemy zaobserwować, że największe kryptowaluty znajdują się w dwóch klastrach (na wykresie żółty i zielony). Tym razem model nie był juz w stanie znaleźć kryptowalut wyraźnie odstających od reszty, co podważa jego wiarygodność.
+
